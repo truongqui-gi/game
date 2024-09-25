@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title> <!-- Đổi tên trang web tại đây -->
+    <style>
+        body {
+            margin: 0; /* Xóa khoảng cách mặc định */
+            overflow: hidden; /* Ẩn thanh cuộn */
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #startButton {
+            position: absolute; /* Đặt nút bấm ở giữa màn hình */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 2; /* Đảm bảo nút bấm nằm trên video */
+        }
+        #video {
+            position: absolute; /* Đặt video ở vị trí tuyệt đối */
+            top: 0;
+            left: 0;
+            width: 100%; /* Đặt chiều rộng video là 100% */
+            height: 100%; /* Đặt chiều cao video là 100% */
+            display: none; /* Ẩn video ban đầu */
+            z-index: 1; /* Đảm bảo video nằm dưới nút bấm */
+        }
+    </style>
+</head>
+<body>
+    <h1>Chào Mừng Đến Với Game!</h1> <!-- Đổi tiêu đề hiển thị tại đây -->
+    <p>Bấm nút dưới đây để bắt đầu!</p>
+    <button id="startButton">Bắt Đầu</button>
+    <video id="video" controls autoplay>
+        <source src="file:///C:/Users/truon/Downloads/horo.mp4.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video.
+    </video>
+
+    <script>
+        document.getElementById('startButton').onclick = function() {
+            var video = document.getElementById('video');
+            video.style.display = 'block';
+            this.style.display = 'none'; // Ẩn nút bấm
+            
+            // Phát video và chuyển sang chế độ toàn màn hình
+            video.play();
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        };
+    </script>
+</body>
+</html>
